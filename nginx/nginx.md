@@ -46,4 +46,27 @@ http      #http块
 }
 ```
 
+## 负载均衡
 
+```conf
+http      #http块
+{
+    upstream test 
+    {
+       #server 地址:端口号 weight表示权值，权值越大，被分配的几率越大;
+　　　　server 192.168.0.223:8080 weight=2;            
+    　 server 192.168.0.224:8080 weight=1;
+    }
+    server      #server块
+    { 
+        listen       8080;
+        server_name  localhost;
+        location / { 
+            proxy_pass http://test/; 
+        } 
+    }
+    
+}
+```
+
+## Keepalived
