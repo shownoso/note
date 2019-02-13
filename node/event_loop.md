@@ -1,4 +1,7 @@
 ## Node 事件循环机制 发生在LIBUV层
+给个链接日后好相见
+https://github.com/nodejs/nodejs.org/blob/master/locale/zh-cn/docs/guides/event-loop-timers-and-nexttick.md
+
 完美的异步IO应该是应用程序发起非阻塞调用，无需通过遍历或者事件唤醒等方式轮询。
 ![image](../image/event_loop.png)
 
@@ -15,7 +18,7 @@ Node.js 通过事件循环机制（初始化和回调）的方式运行 JavaScri
 
 Node的事件调度由libuv负责。
 
-**需要保障事件循环线程和您的工作线程都不会阻塞。**
+**需要保障事件循环线程和工作线程都不会阻塞。**
 
 ### 事件循环的操作顺序
 
