@@ -108,7 +108,7 @@ I/O观察者：一般性的I/O回调，如网络，文件，数据库I/O等
 check观察者：setTimeout>setImmediate
 
 
-### 小问题：如何实现sleep(coroutine)?
+### 小问题：如何实现sleep? [协程](./asyncControll.md)
 ```js
 async function test() {
   console.log('Hello')
