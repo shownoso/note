@@ -14,7 +14,7 @@
 ### 二、丢代码
 
 ```bash
-  #登陆服务器 root:服务器名 ip:服务器ip地址
+  #登陆服务器 root:服务器用户名 ip:服务器ip地址
   ssh root@ip
   #将build.zip丢到该服务器的root路径下
   scp build.zip root@ip:/root/
