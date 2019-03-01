@@ -139,7 +139,7 @@ s1 = null;
 * 大循环，无GC机会
 ......
 
-**内存泄漏排查**
+**内存泄漏排查**  memwatch+heapdump
 参考： https://www.cnblogs.com/ldlchina/p/4762036.html
 0. node-inspector + chrome 调试
 
