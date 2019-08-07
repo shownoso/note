@@ -1,5 +1,5 @@
 
-
+csstriggers.com
 ## 如何运用本地存储
 
 ## 缓存优先级
@@ -55,7 +55,7 @@ js 读取值 offset scroll width getComputedStyle ： 为什么？  因为浏览
 但是一旦读取的时候，浏览器就会取消优化
 
 
-如何解决？ 先读  然后使用 requestAnimationFrame() 在下一帧写
+如何解决？ 先读取  然后使用 requestAnimationFrame() 在下一帧写操作
 
 
 
