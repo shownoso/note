@@ -4,6 +4,15 @@
     brew install nginx
 ```
 
+#### 源码安装
+进入源码目录 nginx-version.tar.gz
+确认 gcc 已安装
+```bash
+    ./configure #Makefile
+    make & make install #编译并安装
+```
+
+
 ## 基本命令
 ```bash
     #启动

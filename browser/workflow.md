@@ -17,3 +17,11 @@
 5. 服务器返回HTML响应
 6. 浏览器处理HTML页⾯
 7. 继续请求其他资源
+
+
+### 三、timing-overview
+https://www.w3.org/TR/navigation-timing/#sec-navigation-timing
+![image](https://www.w3.org/TR/navigation-timing/timing-overview.png)
+
+
+1. 
