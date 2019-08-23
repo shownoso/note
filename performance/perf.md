@@ -58,5 +58,18 @@ js 读取值 offset scroll width getComputedStyle ： 为什么？  因为浏览
 如何解决？ 先读取  然后使用 requestAnimationFrame() 在下一帧写操作
 
 
+如何开发不会导致重排
+1. 样式表越简单 重排和重绘速度更快
+2. 重排和重绘的dom元素层级越高 成本越高
+3. table元素重排重绘成本高于div
+4. 先读完 后写
+5. 统一改变样式
+6. 缓存重排结果
+7. 离线DOM Fragment/clone
+8. 虚拟DOM
+9. 必要时display: none 不可见元素不影响重排重绘
+visibility会影响重排不影响重绘
+
+
 
 
