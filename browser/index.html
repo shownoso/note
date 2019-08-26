@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <ul>
+            <li></li>
+            <li>
+                <img src="https://www.w3.org/TR/navigation-timing/timing-overview.png" alt="">
+            </li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <script>
+        // performance.timing 强引用 在流程中是不断改变属性值的，因为它要记录节点的时间
+        console.log(performance.timing)
+
+        // window.onload 所有资源加载完毕
+        window.onload = function() {
+            console.log(+new Date())
+        }
+    </script>
+</body>
+</html>
