@@ -10,7 +10,7 @@ from 你不知道的js && MDN
 #### 几个注意点
 1. es6 箭头函数仅根据当前词法作用域决定，相当于 var self = this; 即便是new 也不能改变其this。
 2. 对于显示绑定规则，当需要忽略this时，使用 Object.create(null) 创建真正的'空'对象进行占位。
-3. 间接引用时，使用默认绑定
+3. *间接引用时，使用默认绑定*
 ```js
 function foo() {
     console.log(this.a);
