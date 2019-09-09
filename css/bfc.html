@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BFC: Block(level) formatting context</title>
+    <style>
+        body {
+            width: 300px;
+            position: relative;
+        }
+
+        .aside {
+            width: 100px;
+            height: 150px;
+            float: left;
+            background: #f66;
+        }
+
+        .main {
+            height: 200px;
+            background: #fcc;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .bfc {
+            overflow: hidden;
+        }
+        .left {
+            float: left;
+            height: 100px;
+        }
+
+        .green {
+            background: green;
+        }
+        .red {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="aside">BFC1 float: left</div>
+    <div class="main">BFC2 overflow: hidden 与BFC1绝不重叠</div>
+
+
+    <div class="bfc">
+        <div class="left green">浮动1 高100</div>
+        <div class="left red">浮动2 高100 </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>outline及box-shadow实现</title>
+    <style>
+        .main {
+            background: #ccc;
+            border-radius: .8rem;
+            padding: 1em;
+            box-shadow: 0 0 0 .34em red;
+            outline: .8em solid red;
+            height: 150px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="main">
+        计算阴影的模糊半径
+
+        已知 border-radius 所在圆半径为 a = b
+        则有 r = √2 * a 
+        模糊半径 = r - a = (√2 - 1) * a       
+    </div>
+    <img src="./1.png" alt="">
+
+</body>
+</html>

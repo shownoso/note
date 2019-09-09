@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        window.addEventListener('deviceorientation', function (event) {
+
+            // 1.deviceorientation
+            // 设备的物理方向信息 alpha beta gamma
+            console.log(event.alpha + ' : ' + event.beta + ' : ' + event.gamma);
+        });
+
+
+        window.addEventListener("devicemotion", function (event) {
+            // 2.devicemotion
+            // 设备的加速信息 
+            // acceleration //设备在x或y或z三个方向上的移动加速度值
+            // accelerationIncludingGravity //acceleration基础上包含重力加速度后的值
+            // rotationRate(alpha beta gamma) //设备绕三根轴旋转了的角度
+        }, true);
+
+
+
+
+        window.addEventListener("compassneedscalibration", function (event) {
+            // 3.compassneedscalibration
+            // 用于通知web站点使用罗盘信息校准上述事件
+
+            console.log('您的罗盘需要校准，请将设备沿数字8方向移动。');
+            event.preventDefault();
+        }, true);
+    </script>
+</body>
+
+</html>

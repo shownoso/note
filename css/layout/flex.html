@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flex 弹性布局</title>
+    <style>
+
+    body, div {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    div {
+        height: 100px;
+    }
+
+    .container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .left {
+        background: red;  
+        width: 180px;
+    }
+    .middle {
+        background: yellow; 
+        flex-grow: 1; 
+    }
+    .right {
+        background: blue;  
+        width: 180px;
+    }
+    
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+       <div class="left">left</div>
+       <div class="middle">middle</div>
+       <div class="right">right</div>
+    </div>
+   
+</body>
+</html>
