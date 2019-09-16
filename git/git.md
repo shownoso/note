@@ -29,8 +29,3 @@ git reset --hard HEAD^
 
 ```
 
-git config --global user.name shownoso 
-
-git config --global user.email 457802359@qq.com
-
-ssh-keygen -t rsa -C "457802359@qq.com"
