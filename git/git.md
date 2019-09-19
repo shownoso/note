@@ -1,5 +1,5 @@
 
-### 常用
+### 常用基础
 
 ```bash
 
@@ -27,5 +27,4 @@ git reset --hard <version>
 git reset --hard HEAD^
 
 
-```
 
