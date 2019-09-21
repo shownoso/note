@@ -68,7 +68,7 @@ if (!Function.prototype.bind) {
 
 ### 软绑定
 使用硬绑定后无法再更改this，使用软绑定更加灵活。
-ps： 实际业务中，我个人并不喜欢this动来动去，灵活你妹。
+ps：灵活你妹。
 ```js
 // polyfill
 if (!Function.prototype.softBind) {
