@@ -1,0 +1,3 @@
+
+promise实例的then方法 必须在当前状态为fullfilled的时候才被调用
+then的回调，是在then调用时才推入微任务队列
