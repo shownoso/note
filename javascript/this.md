@@ -7,6 +7,18 @@ from 你不知道的js && MDN
 3. 隐式绑定：上下文对象调用 绑定到该上下文对象
 4. 默认绑定：undefined，非严格模式下为window
 
+
+### 查找表现
+
+- 全局：this == window/global
+- Node Module：this == module.exports（初始是 {}，且不会像 arguments 一样进行跟踪）
+<!-- - function 或 Eval： 新的EC新的this，而块（```{}```）不会 -->
+- 作为对象的方法调用：this == 该对象/宿主对象
+- 单独的函数调用：this == global/window
+- 严格模式（函数级）：this == undefined
+- 箭头函数：词法作用域上绑定的父级this
+
+
 #### 几个注意点
 1. es6 箭头函数仅根据当前词法作用域决定，相当于 var self = this; 即便是new 也不能改变其this。
 2. 对于显示绑定规则，当需要忽略this时，使用 Object.create(null) 创建真正的'空'对象进行占位。
