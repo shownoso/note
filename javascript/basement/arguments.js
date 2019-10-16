@@ -15,6 +15,6 @@ var obj = {
 
 obj.fn(function() {
     // 注意 
-    console.log(this.length) //1  this是argument 实参个数为1
+    console.log(this.length) //1  回调函数在test执行，this是argument， 实参个数为1
 })
 
