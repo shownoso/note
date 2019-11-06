@@ -41,6 +41,8 @@ systemctl status nginx
 systemctl start nginx
 #关闭
 systemctl stop nginx
+#重启
+systemctl restart nginx.service
 ```
 
 ## 网络管理命令
@@ -125,7 +127,7 @@ ps aux
 # 查询sshd进程 忽略信息中带有grep的
 ps aux | grep sshd
 # 如何区分主进程 pid较小的有可能是父进程
-
+# ps aux | grep nginx
 
 # kill pid 
 # -9 强制关闭信号 
@@ -154,9 +156,10 @@ ss -anp | grep :22
 
 # *nix系统必带的
 netstat -anp | grep :22
-
+netstat -tlnp
 # mac下 
 lsof -i tcp:8081
+lsof -n -P -i TCP -s TCP:LISTEN
 
 ```
 
