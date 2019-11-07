@@ -11,6 +11,7 @@ function outside () {
     // })();
     
     return function() {
+        // 如果此行被注释呢？ closure消失！
         console.log(a)
     }
 
