@@ -1,76 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>双飞翼</title>
+    <title>圣杯</title>
     <style>
+        body,
+        div {
+            margin: 0;
+            padding: 0;
+        }
 
-    body, div {
-        margin: 0;
-        padding: 0;
-    }
-    div {
-        height: 100px;
-    }
-
-
-    /* 第一步 安放主体 */
-    .middle {
-        float: left;
-        width: 100%;
-        background: yellow;
-    }
+        div {
+            min-height: 100px;
+        }
 
 
-    /* 第二步 此时left在屏幕右侧以外，因此通过margin-left将它拉回到最左侧 */
-    .left {
-        float: left;
-        width: 100px;
-        background: red;
-        margin-left: -100%;
-        height: 200px;
-        text-align: center;
-    }
+        /* 第一步 安放主体 容器预留左右位置 */
+        .middle {
+            float: left;
+            width: 100%;
+            background: yellow;
+        }
 
-    /* 第三步 right同理 只需要拉回自己的宽度即可 */
-    .right {
-        float: left;
-        width: 100px;
-        margin-left: -100px;
-        background: blue;
-        text-align: center;
-    }
-
-    /* 第四步 使主体内部内容给出左侧的left宽度 margin不改变盒模型 */
-    .middle .inner {
-        margin-left: 100px;
-        text-align: center;
-    }
+        .container {
+            padding: 0 100px;
+        }
 
 
-    /* 第五步 拉伸内容至极大 */
-    .middle, .left, .right {
-        padding-bottom: 9999px;
-        margin-bottom: -9999px;
-    }
-    /* 第六步 利用overflow: hidden;实现伪等高 */
-    .container {
-        overflow: hidden;
-    }
-    
+        /* 第二步 通过margin-left将left拉回到最左侧 并使用相对自己定位到容器的预留位置*/
+        .left {
+            float: left;
+            width: 100px;
+            background: red;
+            margin-left: -100%;
+            position: relative;
+            left: -100px;
+
+        }
+
+        /* 第三步 right同理 拉回自己的宽度并通过相对定位移动到预留位置 */
+        .right {
+            float: left;
+            width: 100px;
+            background: blue;
+            margin-left: -100px;
+            position: relative;
+            right: -100px;
+        }
+
+
+
+        /* 第五步 拉伸内容至极大 */
+        .middle,
+        .left,
+        .right {
+            padding-bottom: 9999px;
+            margin-bottom: -9999px;
+        }
+
+        /* 第六步 利用overflow: hidden;实现伪等高 */
+        .container {
+            overflow: hidden;
+            clear: both;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="middle">
-            <div class="inner">middle</div>
+            middle
         </div>
         <div class="left">left</div>
         <div class="right">right</div>
 
     </div>
-   
+
 </body>
+
 </html>
