@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>两个容器都不是层叠上下文，子级按照各自的z-index处理</title>
+  <style>
+    body,div {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      max-width: 600px;
+    }
+    .container {
+      position: relative;
+      z-index: auto;
+    }
+
+    .pos1,
+    .pos2 {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      text-align: right;
+      border: 2px dashed lightblue;
+    }
+
+    .pos1 {
+      top: 0;
+      left: 0;
+      background: red;
+      z-index: 2;
+    }
+
+    .pos2 {
+      top: 0;
+      left: 100px;
+      background: yellowgreen;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="pos1">
+      1
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="pos2">
+      2
+    </div>
+  </div>
+
+  <div style="float: right">
+    <p>容器的z-index: <span id="zIndex">auto</span></p>
+    <button onclick="changeZ()" id="btn">改变</button>
+
+    <p>
+      两个容器的z-index为auto时，子级按照自己的z-index比较；
+      两个容器设置z-index不为auto时，产生层叠上下文，子级听从各自父级进行层叠顺序的比较
+    </p>
+  </div>
+
+  <script>
+    var zIndex = 'auto';
+    function changeZ() {
+      zIndex = zIndex === 'auto' ? 0 : 'auto';
+      var containers = document.querySelectorAll('.container') || [];
+      var zIndexText = document.querySelector('#zIndex');
+
+      requestAnimationFrame(function () {
+        zIndexText.textContent = zIndex;
+        for (var i = 0; i < containers.length; i++) {
+          containers[i].style.zIndex = zIndex;
+        }
+      })
+
+    }
+  </script>
+</body>
+
+</html>

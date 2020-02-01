@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>过滤器 filter </title>
+  <style>
+    .container {
+      background: yellowgreen;
+      filter: blur(1px);
+    }
+
+    .container>.box {
+      position: relative;
+      z-index: -1;
+     
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      我是box
+    </div>
+  </div>
+
+  <p>
+    容器设置filter时产生层叠上下文 box跟随父级容器展示
+  </p>
+  <p>
+    当去除容器的filter，box隐藏
+  </p>
+
+
+</body>
+
+</html>

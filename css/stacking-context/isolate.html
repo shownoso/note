@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>阻隔 混合模式 isolation:isolate </title>
+  <style>
+    .container {
+      background: yellowgreen;
+      /* isolation: isolate; */
+    }
+
+    .container>.box {
+      position: relative;
+      z-index: -1;
+    }
+
+   .isolate {
+      position: absolute;
+      mix-blend-mode: soft-light;
+      background: red;
+      color: yellowgreen;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="isolate">
+    我是混合块
+  </div>
+  <div class="container">
+    <div class="box">
+      我是box
+    </div>
+  </div>
+
+  <p>
+    容器设置 isolation: isolate 时产生层叠上下文 box跟随父级容器展示
+  </p>
+  <p>
+    覆盖了混合快是因为相同层叠顺序的层叠上下文后来者居上，容器在混合块之后
+  </p>
+  <p>
+    当去除容器的 isolation: isolate box隐藏 且混合块显示
+  </p>
+
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>混合模式mix-blend-mode</title>
+  <style>
+    .container {
+      background: yellowgreen;
+      mix-blend-mode: screen;
+      font-size: 20px;
+      font-weight: 900;
+      color: blue;
+    }
+
+    .container > .box {
+      position: relative;
+      z-index: -1;
+      mix-blend-mode: screen;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    我是容器
+    <div class="box">
+      我是box
+    </div>
+  </div>
+
+  <p>
+    容器设置混合模式时产生层叠上下文 box跟随父级容器展示
+  </p>
+  <p>
+    当去除容器的mix-blend-mode，box隐藏
+  </p>
+
+  <p>
+    给box设置mix-blend-mode 发现原先蓝色的字体被混合背景后变成了另一种颜色
+  </p>
+
+</body>
+
+</html>

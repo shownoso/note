@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>flex child</title>
+  <style>
+    .container {
+      display: flex;
+    }
+
+    .container > .box {
+      background: yellowgreen;
+      z-index: 1;
+    }
+
+    .container > .box > p {
+      position: relative;
+      z-index: -1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      <p>我是p标签文字</p>
+    </div>
+  </div>
+
+  <p>
+    当给容器设置了flex，绿色的box作为flex容器的子级产生了层叠上下文，
+    因此box的子级p标签需要跟随box的层叠顺序，即使自身也是层叠上下文且z-index为负值，也要展示出来
+  </p>
+  <p>
+    当去除容器的diaplay: flex后，文字隐藏到绿色box后面
+  </p>
+
+</body>
+
+</html>

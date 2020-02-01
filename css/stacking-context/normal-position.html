@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>z-index auto 与 0 层叠顺序等价，所以后来者居上</title>
+  <style>
+    .container {
+      position: relative;
+      z-index: 0;
+    }
+
+    .pos1,
+    .pos2,
+    .pos3 {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+    }
+
+    .pos1 {
+      top: 0;
+      left: 0;
+      background: red;
+      z-index: 0;
+    }
+
+    .pos2 {
+      top: 0;
+      left: 100px;
+      background: yellowgreen;
+    }
+
+    .pos3 {
+      top: 0;
+      left: 150px;
+      background: blue;
+      z-index: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="pos1">
+      1
+    </div>
+    <div class="pos2">
+      2
+    </div>
+    <div class="pos3">
+      3
+    </div>
+  </div>
+</body>
+
+</html>

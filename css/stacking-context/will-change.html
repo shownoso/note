@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>will-change</title>
+  <style>
+    .container {
+      background: yellowgreen;
+      will-change: transform;
+    }
+
+    .container > .box {
+      position: relative;
+      z-index: -1;
+     
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      我是box
+    </div>
+  </div>
+
+  <p>
+    容器设置了不为初始值的will-change将产生层叠上下文 box跟随父级容器展示
+  </p>
+  <p>
+    当设置容器will-change: initial后，box隐藏
+  </p>
+  <p>
+    will-change告知浏览器此元素会有哪些变化，浏览器可以提前进行优化准备。它是高消费的，因此最佳实践是当元素变化之前和之后通过脚本来切换 will-change 的值。
+  </p>
+</body>
+
+</html>

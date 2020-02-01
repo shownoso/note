@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>变换 transform</title>
+  <style>
+    .container {
+      background: yellowgreen;
+      transform: skew(15deg);
+    }
+
+    .container > .box {
+      position: relative;
+      z-index: -1;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      我是box
+    </div>
+  </div>
+
+  <p>
+    容器设置transform时产生层叠上下文 box跟随父级容器展示
+  </p>
+  <p>
+    当去除transform后，box隐藏
+  </p>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>透明度opcaty</title>
+  <style>
+    .container {
+      background: yellowgreen;
+      opacity: .72;
+    }
+
+    .container > .box {
+      position: relative;
+      z-index: -1;
+     
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      我是box
+    </div>
+  </div>
+
+  <p>
+    opacity不为0时产生层叠上下文 box跟随父级容器展示
+  </p>
+  <p>
+    当设置容器opacity: 1后，box隐藏
+  </p>
+
+</body>
+
+</html>
