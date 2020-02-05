@@ -69,6 +69,10 @@ if (!Function.prototype.bind) {
       // Function.prototype doesn't have a prototype property
       fNOP.prototype = this.prototype; 
     }
+
+    // or fBound.prototype = Object.create( this.prototype );
+
+
     // 下行的代码使fBound.prototype是fNOP的实例,因此
     // 返回的fBound若作为new的构造函数,new生成的新对象作为this传入fBound,新对象的__proto__就是fNOP的实例
     fBound.prototype = new fNOP();
