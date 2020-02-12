@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .drag {
+      position: absolute;
+    }
+
+    .test {
+      left: 100px;
+      top: 100px;
+      width: 100px;
+      height: 100px;
+      background: yellowgreen;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <div class='drag test' id="test"></div>
+  <script>
+    // Return the current scrollbar offsets as the x and y properties of an object
+    function getScrollOffsets(w) {
+      // Use the specified window or the current window if no argument
+      w = w || window;
+
+      // This works for all browsers except IE versions 8 and before
+      if (w.pageXOffset != null) return { x: w.pageXOffset, y: w.pageYOffset };
+
+      // For IE (or any browser) in Standards mode
+      var d = w.document;
+      if (document.compatMode == "CSS1Compat")
+        return { x: d.documentElement.scrollLeft, y: d.documentElement.scrollTop };
+
+      // For browsers in Quirks mode
+      return { x: d.body.scrollLeft, y: d.body.scrollTop };
+    }
+
+  </script>
+  <script src="./drag.js"></script>
+  <script>
+
+    window.onload = function() {
+    document.getElementById('test').addEventListener('mousedown', function(e) {
+      if (e.shiftKey) {
+        drag(this, event)
+      }
+    })
+    }
+
+
+
+  </script>
+
+</body>
+
+</html>

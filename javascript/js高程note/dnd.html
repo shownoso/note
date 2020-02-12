@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  #target {
+    background-color: yellowgreen;
+  }
+  </style>
+</head>
+
+<body>
+  <script>
+    function dragstart_handler(ev) {
+      ev.dataTransfer.dropEffect = "move"; // 表明被拖动的数据将从它原本的位置拷贝到目标的位置 另外还有move link
+      // Add the target element's id to the data transfer object
+      ev.dataTransfer.setData("application/my-app", ev.target.id);
+    }
+
+
+    function dragover_handler(ev) {
+     ev.preventDefault();
+     ev.dataTransfer.dropEffect = "move";
+    }
+    function drop_handler(ev) {
+     ev.preventDefault();
+     // Get the id of the target and add the moved element to the target's DOM
+     var data = ev.dataTransfer.getData("application/my-app");
+     ev.target.appendChild(document.getElementById(data));
+    }
+  </script>
+
+  <p id="p1" draggable="true" ondragstart="dragstart_handler(event)">This element is draggable.</p>
+
+    
+  <div id="target" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">Drop Zone</div>
+</body>
+
+</html>

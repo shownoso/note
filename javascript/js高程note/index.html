@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script src="./partial.js"></script>
+
+  <script src="./inherit.js"></script>
+  <script src="./enumeration.js"></script>
+  <script src="./puke.js"></script>
+  <script>
+    var f = function(x,y,z) {
+      return x*(y-z);
+    }
+
+    console.log(partialLeft(f,2)(3,4))
+    console.log(partialRight(f,2)(3,4))
+    console.log(partial(f,undefined,2)(3,4))
+  </script>
+
+
+</body>
+</html>
