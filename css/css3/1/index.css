@@ -1,0 +1,12 @@
+.avatar {
+    text-align: center;
+}
+.avatar img {
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .3s;
+    transform: scale(1);
+}
+.avatar img:hover {
+    transform: scale(1.1);
+}
