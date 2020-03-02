@@ -60,11 +60,11 @@ https://www.w3.org/TR/navigation-timing/#sec-navigation-timing
 
 9. Processing 处理(默认为HTML文档，描述Document.readyState: ``` loading、interactive、complete ```)
     - domLoading 正在加载之前立即记录
-    - domInteractive 可交互之前立即记录
+    - domInteractive 可交互之前立即记录， 页面呈现
     - domContentLoaded 
         - domContentLoadedEventStart DOMContentLoaded事件之前，立即记录
         - domContentLoadedEventEnd  domContentLoaded 事件结束
-    - domComplete 就绪 complete： $(function(){})
+    - domComplete 就绪 complete： $(function(){}) => window.addEventListener('domContentLoaded')
 
 10. onLoad 文档加载
     - loadEventStart 触发加载的时间
