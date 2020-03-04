@@ -73,6 +73,8 @@
 * Content-Language 实体报头域描述了资源所用的自然语言。 
 * Content-Length 实体报头域用于指明实体正文的长度，以字节方式存储的十进制数字来表示。 
 * Content-Type 实体报头域用语指明发送给接收者的实体正文的媒体类型。 
+- application/octet-stream 字节流类型，浏览器按照 下载类型 处理
+- 
 * Last-Modified 实体报头域用于指示资源的最后修改日期和时间。 
 * Expires 实体报头域给出响应过期的日期和时间。
 

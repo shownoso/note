@@ -1,32 +1,48 @@
-## 浏览器工作流程
+# 工作流程
+![http](../image/http.png)
 
-### 一、简单的请求/响应模型
+## 模型
 客户端请求，服务端响应
 
-### 二、 处理流程
-1. 输⼊⽹址并回车
-    - 确认协议(以下均认为是http)
-    - 连接检测
-    - 缓存查询
-    - 跨越网关
-2. 解析域名
-    - DNS服务器
-3. 浏览器发送[HTTP](../protocol/http.md)请求
-    - 路由策略：来回可能是不同路径 分块也可能不同路径
-4. 服务器处理请求
-5. 服务器返回HTML响应
+## 处理
+1. 访问一个网址
+    - 确认协议，构建请求
+    - 浏览器进程通过 IPC 将请求发送给网络进程
+    - 缓存查询，在浏览器缓存中查询是否有要请求的文件。若缓存命中，则直接返回，否则进行网络请求
+    <!-- - 跨越网关（如：防火墙） -->
+2. 域名解析
+    - DNS（Domain Name System）服务器，迭代查询，将域名转换为目标ip
+    - DNS 数据缓存服务：如果某个域名已经解析过了，那么浏览器会缓存解析的结果
+    - 如果请求协议是 HTTPS 还需建立 TLS 连接
+3. 等待/建立TCP
+    - Chrome 最多允许同时 6 个 tcp连接
+4. [HTTP](../protocol/http.md)请求
+    - 请求行、请求头、请求体
+
+5. 服务器处理请求，并响应
+6. 网络进程解析响应，根据响应头信息决定处理行为
+    - 状态码
+    - 响应文本类型
+7. 断开连接
+```bash
+# 保持 TCP 连接可以省去下次请求时需要建立连接的时间，提升资源加载速度
+Connection:Keep-Alive
+```
 6. 浏览器处理HTML页⾯
+    - 准备/复用渲染进程 采取 `process-per-site-instance` 策略
 7. 继续请求其他资源
 
+### 服务器重定向
+需要重定向的网址包含在响应头的 Location 字段中，浏览器获取 Location 字段中的地址，并使用该地址重新导航，
 
-### 三、timing-overview
+### timing-overview
 https://www.w3.org/TR/navigation-timing/#sec-navigation-timing
 ![image](https://www.w3.org/TR/navigation-timing/timing-overview.png)
 
 
-1. prompt for unload 提示卸载
-    - navigationStart 导航开始
-2. redirect 重定向
+1. prompt for unload 提示卸载 event: beforeunload
+    - navigationStart 导航开始，用户发出 URL 请求到页面开始解析
+2. redirect 页面重定向
     - redirectStart 重定向开始
     - redirectEnd 重定向结束
 3. unload 卸载，与重定向可同时发生
