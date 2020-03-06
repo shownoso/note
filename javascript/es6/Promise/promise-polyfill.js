@@ -20,11 +20,12 @@ var MyPromise = function(fn){
             //如果value是一个promise 递归执行   
             return value.then(_this.resolve,_this.reject);
         }
-        //异步执行
+        //异步执行  真实情况是加入到微任务队列，这里用定时器模拟
         setTimeout(function(){
             if(_this.state === PENDING){
                 _this.state = RESOLVED;
                 _this.value = value;
+                // 同步回调 通过then注册的回调
                 _this.resolveCallbacks.forEach(cb => cb(_this.value));
             }
         },0)

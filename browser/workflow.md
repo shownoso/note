@@ -15,7 +15,7 @@
     - DNS 数据缓存服务：如果某个域名已经解析过了，那么浏览器会缓存解析的结果
     - 如果请求协议是 HTTPS 还需建立 TLS 连接
 3. 等待/建立TCP
-    - Chrome 最多允许同时 6 个 tcp连接
+    - Chrome 中同一域名最多允许同时 6 个 tcp连接
 4. [HTTP](../protocol/http.md)请求
     - 请求行、请求头、请求体
 
@@ -23,7 +23,8 @@
 6. 网络进程解析响应，根据响应头信息决定处理行为
     - 状态码
     - 响应文本类型
-7. 断开连接
+7. 进入[渲染](./render.md)阶段
+
 ```bash
 # 保持 TCP 连接可以省去下次请求时需要建立连接的时间，提升资源加载速度
 Connection:Keep-Alive
@@ -86,6 +87,48 @@ https://www.w3.org/TR/navigation-timing/#sec-navigation-timing
     - loadEventStart 触发加载的时间
     - loadEventEnd 加载完成 开始由渲染器渲染 ``` window.onload  全部资源加载完毕```
 [onload](./index.html)
+
+
+## 资源请求及优化
+Chrome - Network 中查看 Timing
+![chrome-resource-timing](../image/chrome-resource-timing.png)
+### 排队（Queuing）
+- 资源优先级：比如 CSS、HTML、JavaScript 等都是页面中的核心文件，优先加载；而图片、视频、音频这类资源就不是核心资源，优先级就比较低。
+- 浏览器为每个域名最多维护 6 个 TCP 连接，当这 6 个 TCP 连接都处于忙碌状态时，那么新的请求就会处于排队状态。
+- 网络进程在为数据分配磁盘空间时，新的 HTTP 请求也需要短暂地等待磁盘分配结束。
+
+#### Queuing优化
+1. 域名分片：将站点资源放到多个域名下，拓展 tcp 连接 
+2. 升级到 HTTP2。 HTTP2不再对单域名有 6 个 TCP 的限制
+
+### Stalled
+停滞，连接过程被推迟
+### Proxy Negotiation
+代理协商，代理服务器连接协商所用的时间
+### DNS Lookup
+DNF查询
+### Initial connection
+初始化链接
+### SSL
+使用了https，ssl握手
+### Request sent
+请求发出
+### Waiting（TTFB）
+TTFB（接受到第一字节的时间） 反映服务端响应速度，TTFB 时间越短，说明服务器响应越快
+#### TTFB 优化
+1. 确保服务器处理速度
+2. 使用 CDN 缓存
+3. 减少请求头数据（尤其是Cookie中不必要的信息） / HTTP2 头部压缩
+### Content Download
+整个接收字节过程的时间
+
+#### Content Download 优化
+主要是减小单个资源的大小，比如压缩文件体积
+
+
+
+
+
 
 
 

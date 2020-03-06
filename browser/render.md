@@ -1,24 +1,20 @@
 # 渲染
 构建 DOM 树、样式计算、布局阶段、分层、绘制、分块、光栅化和合成。
 主线程： Dom Style Layout Layer Paint
-非主线程：tiles raster draw quad display
+非主线程：tiles raster draw-quad display
 每一个步骤都有其输入的内容，有其处理过程，生成输出内容。
 ## 构建 DOM 树
-将 HTML 转换为 DOM 树，通过查看 `document` 对象即可查看整个文档的构建结果。
-### DOM 的解析
-自上而下  
-如果遇到脚本则先执行脚本
-如果是引入的形式： `<script type="text/javascript" src="foo.js"></script>`，则会等待js文件加载完毕
-### DOM 阻塞
-- JavaScript文件会阻塞 DOM 渲染
-- 当在JavaScript中访问了某个元素的样式，那么就需要等待这个样式被下载完成才能继续往下执行，所以在这种情况下，CSS也会阻塞 DOM 的解析。
+将 HTML 转换为 [DOM 树](./DOMTree.md)，通过查看 `document` 对象即可查看整个文档的构建结果。
 ## 样式计算
-渲染引擎会把获取到的 CSS 文本全部转换为 `document.styleSheets`。该样式表为样式操作提供了查询和修改等功能。  
-将所有CSS 属性值转换为渲染引擎容易理解的、标准化的计算值。
-输出每个 DOM 节点的样式。ComputedStyle （chrome devtool 选中元素 computed）
+1. 渲染引擎会把获取到的 CSS 文本全部转换为 `document.styleSheets`。
+  - 提供给 JavaScript 操作样式表的能力
+  - 为布局树的合成提供基础的样式信息
+ 
+2. 将所有CSS 属性值转换为渲染引擎容易理解的、标准化的计算值。
+3. 输出每个 DOM 节点的样式。ComputedStyle （chrome devtool 选中元素 computed）
 
 ## 布局（Layout）
-针对可见元素。
+针对可见元素。  
 布局是浏览器计算各元素几何信息的过程：元素的大小以及在页面中的位置。
 在 Firefox 中称为*重排（Reflow）*。
 Layout Tree = DOM Tree + styleSheets。
@@ -35,6 +31,7 @@ Render Tree = DOM Tree + CSSOM Tree。
 ## 图层 （Layer）
 渲染引擎为特定的节点生成专用的图层，并生成一棵对应的图层树（LayerTree）。 
 chrome devtool - moretool - Layers
+
 ### 产生：
 1. [层叠上下文](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context)的产生
 2. clip 旧的浏览器，可忽略
@@ -59,11 +56,13 @@ chrome devtool - moretool - Layers
 
 渲染进程把生成图块的指令发送给 GPU，然后在 GPU 中执行生成图块的位图，并保存在 GPU 的内存中。  
 
-4. 合成  
-
+4. 合成
+在合成线程上完成 不会影响到主线程执行
 一旦所有图块都被光栅化，合成线程就会生成一个绘制图块的命令——“DrawQuad”，然后将该命令提交给浏览器进程。
 
 浏览器进程里面有一个叫 viz 的组件，用来接收合成线程发过来的 DrawQuad 命令，然后根据 DrawQuad 命令，将其页面内容绘制到内存中，最后再将内存显示在屏幕上。
+
+纹理上传： 从计算机内存上传到 GPU 内存的操作会比较慢。 chrome策略： 在首次合成图块的时候使用一个低分辨率的图片
 
 ## 渲染流程总结
 ![render-sumarry](../image/render-summary.png)
@@ -112,7 +111,7 @@ api控制绘制
 比如LayerTree中可能有五层，但是并不是每层都会单独的绘制出来，Chrome为了效率考虑，将一些不需要单独绘制的层合并在一起绘制，这就是GraphicsLayer，GraphicsLayer会分配一块空间用来保持绘制的图像。
 
 
-关于，层压缩（Layer Squashing）这个概念你可以了解下。
+关于，层压缩（Layer Squashing）这个概念。
 
 
 1:首先渲染进程里执行图层合成(Layer Compositor)，也就是生成图层的操作，具体地讲，渲染进程的合成线程接收到图层的绘制消息时，会通过光栅化线程池将其提交给GPU进程，在GPU进程中执行光栅化操作，执行完成，再将结果返回给渲染进程的合成线程，执行合成图层操作！
