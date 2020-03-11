@@ -58,7 +58,7 @@ getGenPromise(gen).then((response) => {
 ```
 
 ## 同步的写法
-执行器 [co](https://www.npmjs.com/package/co)
+执行器 [co](https://www.npmjs.com/package/co) 模拟 async await
 
 ```js
 function* foo() {
