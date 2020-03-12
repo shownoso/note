@@ -16,8 +16,8 @@ if (!Function.prototype.bind) {
       };
 
     // 使用一个宿主函数，修复原型关系，实例可以继承原函数原型中的值
-    // fBound的实例 => fBound <= new fNOP()  
-    // fNOP. => fOrigin
+
+    // fNOP.prototype => fOrigin.prototype
 
     if (this.prototype) {
       // Function.prototype doesn't have a prototype property
