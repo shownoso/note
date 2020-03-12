@@ -23,6 +23,7 @@
 1. es6 箭头函数仅根据当前词法作用域决定，相当于内部维护了 var self = this; 不能被 new。
 2. 对于显示绑定规则，当需要忽略this时，使用 Object.create(null) 创建真正的'空'对象进行占位。
 3. 嵌套函数中的 this 不会从外层函数中继承，所以函数调用时属于间接引用时，使用默认绑定。
+4. class 默认严格模式
 ```js
 function foo() {
     console.log(this.a);

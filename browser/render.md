@@ -12,7 +12,7 @@
  
 2. 将所有CSS 属性值转换为渲染引擎容易理解的、标准化的计算值。
 3. 输出每个 DOM 节点的样式。ComputedStyle （chrome devtool 选中元素 computed）
-
+CSSOM 是有 rule 部分和 view 部分的，rule 部分是在 DOM 开始之前就构建完成的，而 view 部分是跟着 DOM 同步构建的。
 ## 布局（Layout）
 针对可见元素。  
 布局是浏览器计算各元素几何信息的过程：元素的大小以及在页面中的位置。
