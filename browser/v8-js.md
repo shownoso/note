@@ -1,6 +1,6 @@
 # V8-Js Execution
 ![workflow](../image/v8-workflow.png)
-
+早期V8的 Full-codegen、Crankshaft，现在的V8 贴近于 javascriptCore引擎。 https://v8.dev/blog/launching-ignition-and-turbofan
 1. 生成抽象语法树（AST）和执行上下文
 先分词（tokenize）再解析（parse），获得 [AST](http://resources.jointjs.com/demos/javascript-ast)，然后生成执行上下文
 
@@ -48,3 +48,4 @@ for (var i = 0; i < 10; i++) {
 1. 提升单次脚本的执行速度，避免 JavaScript 的长任务霸占主线程，这样可以使得页面快速响应交互；
 2. 避免大的内联脚本，因为在解析 HTML 的过程中，解析和编译也会占用主线程；
 3. 减少 JavaScript 文件的容量，因为更小的文件会提升下载速度，并且占用更低的内存。
+
