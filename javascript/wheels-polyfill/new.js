@@ -1,10 +1,11 @@
 function _new() {
 
-  var obj = Object.create(null);
+  var Constructor = [].shift.call(arguments); // shift：类数组arguments的第一个参数并返回
+  
+  // var obj = Object.create(null);
+  // obj.__proto__ = Constructor.prototype;
 
-  var Constructor = [].shift.call(arguments); // shift：移除类数组arguments的第一个参数并返回
-
-  obj.__proto__ = Constructor.prototype;
+  var obj = Object.create(Constructor.prototype);
 
   var res = Constructor.apply(obj, arguments);
 
